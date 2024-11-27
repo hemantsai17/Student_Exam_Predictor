@@ -1,8 +1,8 @@
 import sys
-import logging
+from src.logger import logging
 # Sys contains information about python environment altogether
 
-def error_message(error ,error_details:sys):
+def error_message_detail(error ,error_details:sys):
    ## exc-tb will give error occured in which part of the python environment
    _,_,exc_tb =  error_details.exc_info()
    file_name = exc_tb.tb_frame.f_code.co_filename
@@ -18,7 +18,7 @@ def error_message(error ,error_details:sys):
 class CustomException(Exception):
     def __init__(self, error_message , error_detail: sys):
         super().__init__(error_message)
-        self.error_message = error_message(error_message , error_details = error_detail)
+        self.error_message = error_message_detail(error_message , error_details = error_detail)
 
     def __str__(self) -> str:
        return self.error_message
